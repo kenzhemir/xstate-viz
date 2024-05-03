@@ -24,6 +24,8 @@ Alternatively, you can install it locally (see installation)
 ## Installation
 
 1. Clone this GitHub repo
+1. Use Node v16
+1. Install yarn: `npm i -g yarn@1`
 1. Run `yarn install`
 1. Run `yarn start` and visit [localhost:3000/viz](http://localhost:3000/viz)
 

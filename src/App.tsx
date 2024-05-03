@@ -1,16 +1,18 @@
 import { Box, ChakraProvider } from '@chakra-ui/react';
-import React, { useEffect, useMemo } from 'react';
 import { useActor, useInterpret, useSelector } from '@xstate/react';
-import { useAuth } from './authContext';
+import router, { useRouter } from 'next/router';
+import React, { useEffect, useMemo } from 'react';
 import { AppHead } from './AppHead';
+import { useAuth } from './authContext';
 import { CanvasProvider } from './CanvasContext';
-import { EmbedProvider } from './embedContext';
 import { CanvasView } from './CanvasView';
+import { EmbedProvider } from './embedContext';
 import { isOnClientSide } from './isOnClientSide';
 import { MachineNameChooserModal } from './MachineNameChooserModal';
 import { PaletteProvider } from './PaletteContext';
 import { paletteMachine } from './paletteMachine';
 import { PanelsView } from './PanelsView';
+import { registryLinks } from './registryLinks';
 import { SimulationProvider } from './SimulationContext';
 import { simulationMachine } from './simulationMachine';
 import { getSourceActor, useSourceRegistryData } from './sourceMachine';
@@ -18,10 +20,7 @@ import { theme } from './theme';
 import { EditorThemeProvider } from './themeContext';
 import { EmbedContext, EmbedMode } from './types';
 import { useInterpretCanvas } from './useInterpretCanvas';
-import router, { useRouter } from 'next/router';
 import { parseEmbedQuery, withoutEmbedQueryParams } from './utils';
-import { registryLinks } from './registryLinks';
-import { analytics } from './analytics';
 
 const defaultHeadProps = {
   title: 'XState Visualizer',

@@ -1,4 +1,4 @@
-# XState (Legacy) Visualizer
+# XState (Legacy) Visualizer FORK
 
 Visualize [XState](https://stately.ai/docs/xstate) state machines and statecharts in real-time.
 

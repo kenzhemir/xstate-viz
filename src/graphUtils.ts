@@ -1,18 +1,17 @@
-import {
-  DigraphBackLinkMap,
-  DirectedGraphEdge,
-  DirectedGraphNode,
-  getBackLinkMap,
-} from './directedGraph';
 import type {
   ELK,
   ElkEdgeSection,
   ElkExtendedEdge,
-  ElkNode,
-  LayoutOptions,
+  ElkNode
 } from 'elkjs/lib/main';
-import { Point } from './pathUtils';
 import { StateNode } from 'xstate';
+import {
+  DigraphBackLinkMap,
+  DirectedGraphEdge,
+  DirectedGraphNode,
+  getBackLinkMap
+} from './directedGraph';
+import { Point } from './pathUtils';
 
 declare global {
   export const ELK: typeof import('elkjs/lib/main').default;
@@ -260,7 +259,7 @@ function getElkChild(
       'elk.spacing.labelLabel': '10',
       ...(shouldWrap && {
         'elk.aspectRatio': '2',
-        'elk.layered.wrapping.strategy': 'MULTI_EDGE',
+        'elk.layered.wrapping.strategy': 'SINGLE_EDGE',
         ...(shouldCompact && {
           'elk.layered.compaction.postCompaction.strategy': 'LEFT',
         }),

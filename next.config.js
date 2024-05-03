@@ -1,6 +1,5 @@
 const registryPublicUrl =
-  process.env.NEXT_PUBLIC_REGISTRY_PUBLIC_URL ||
-  `https://github.com`;
+  process.env.NEXT_PUBLIC_REGISTRY_PUBLIC_URL || `https://github.com`;
 const landingPagePublicUrl = `https://github.com`;
 
 /** @type import('next').NextConfig */
@@ -16,7 +15,12 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   // basePath: `/viz`,
-  productionBrowserSourceMaps: true,
+  exportPathMap: async function () {
+    console.log(arguments);
+    return {
+      '/': { page: '/[[...sourceFileId]]' },
+    };
+  },
   /**
    * These rewrites are never used in production - only in development
    */

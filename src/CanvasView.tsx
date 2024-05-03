@@ -1,8 +1,6 @@
 import {
   AddIcon,
-  MinusIcon,
-  RepeatIcon,
-  QuestionOutlineIcon,
+  MinusIcon, QuestionOutlineIcon, RepeatIcon
 } from '@chakra-ui/icons';
 import {
   Box,
@@ -15,23 +13,21 @@ import {
   MenuItem,
   MenuList,
   Portal,
-  Spinner,
-  Text,
-  VStack,
+  Spinner, VStack
 } from '@chakra-ui/react';
 import { useSelector } from '@xstate/react';
-import xstatePkgJson from 'xstate/package.json';
 import React, { useMemo } from 'react';
+import xstatePkgJson from 'xstate/package.json';
 import { CanvasContainer } from './CanvasContainer';
 import { useCanvas } from './CanvasContext';
+import { CanvasHeader } from './CanvasHeader';
 import { canZoom, canZoomIn, canZoomOut } from './canvasMachine';
 import { toDirectedGraph } from './directedGraph';
-import { Graph } from './Graph';
-import { useSimulation, useSimulationMode } from './SimulationContext';
-import { CanvasHeader } from './CanvasHeader';
-import { Overlay } from './Overlay';
 import { useEmbed } from './embedContext';
+import { Graph } from './Graph';
 import { CompressIcon, HandIcon } from './Icons';
+import { Overlay } from './Overlay';
+import { useSimulation, useSimulationMode } from './SimulationContext';
 import { useSourceActor } from './sourceMachine';
 import { WelcomeArea } from './WelcomeArea';
 
@@ -94,28 +90,6 @@ export const CanvasView: React.FC = () => {
       {!embed?.isEmbedded && (
         <Box data-testid="canvas-header" bg="gray.800" zIndex={1} padding="0">
           <CanvasHeader />
-          <Box
-            bg="blue.600"
-            px="1"
-            py="2"
-            color="white"
-            textAlign="center"
-            fontWeight="600"
-          >
-            <Text>
-              ✨ Our{' '}
-              <Link
-                href="https://stately.ai/editor?source=viz-banner"
-                target="_blank"
-                color="blue.50"
-                textDecoration="underline"
-                className="plausible-event-name=viz+editor-banner"
-              >
-                new Stately visual editor
-              </Link>{' '}
-              is out now! ✨
-            </Text>
-          </Box>
         </Box>
       )}
       <CanvasContainer panModeEnabled={panModeEnabled}>

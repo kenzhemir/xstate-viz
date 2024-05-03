@@ -7,7 +7,7 @@ import {
   HStack,
   Link,
   Stack,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import { useMachine, useSelector } from '@xstate/react';
 import React from 'react';
@@ -146,7 +146,7 @@ export const WelcomeArea = () => {
                   <Text>
                     For the best experience,{' '}
                     <Link
-                      href="https://stately.ai/editor?source=viz"
+                      href="[EDITOR_LINK]"
                       target="_blank"
                       color="blue.300"
                       className="plausible-event-name=viz+stately-editor-button"
@@ -174,7 +174,7 @@ export const WelcomeArea = () => {
                     <Button
                       {...buttonStyleProps}
                       as={Link}
-                      href="https://stately.ai/editor?source=viz"
+                      href="[EDITOR_LINK]"
                       rel="noreferrer"
                       target="_blank"
                       bg="orange.600"

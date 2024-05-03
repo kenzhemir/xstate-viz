@@ -1,5 +1,4 @@
 import { useSelector } from '@xstate/react';
-import Cookies from 'js-cookie';
 import { NextRouter } from 'next/router';
 import * as React from 'react';
 import {
@@ -10,14 +9,14 @@ import {
   Interpreter,
   SendAction,
   StateNode,
-  TransitionDefinition,
+  TransitionDefinition
 } from 'xstate';
 import {
   AnyState,
   AnyStateMachine,
   EmbedMode,
   EmbedPanel,
-  ParsedEmbed,
+  ParsedEmbed
 } from './types';
 
 export function isNullEvent(eventName: string) {
@@ -428,17 +427,6 @@ export const isAcceptingSpaceNatively = (
   getRoles(el).includes('button');
 
 export const isSignedIn = () => {
-  const match = process.env.NEXT_PUBLIC_SUPABASE_API_URL.match(
-    /https:\/\/(.*)\.supabase/,
-  );
-
-  if (match) {
-    const supabaseProjectName = match[1];
-    const cookieName = `sb-${supabaseProjectName}-auth-token`;
-    const authCookie = Cookies.get(cookieName);
-    return authCookie !== undefined && authCookie.length > 0;
-  }
-
   return false;
 };
 

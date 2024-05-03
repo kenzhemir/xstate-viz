@@ -9,11 +9,10 @@ import {
   MenuItem,
   MenuList,
   Stack,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import React from 'react';
 import { useLoggedInUserData } from './authContext';
-import { LikeButton } from './LikeButton';
 import { Logo } from './Logo';
 import { registryLinks } from './registryLinks';
 import { ShareButton } from './ShareButton';
@@ -57,7 +56,6 @@ export const CanvasHeader: React.FC = () => {
             {registryData?.project?.name || 'Unnamed Source'}
           </Text>
           <HStack>
-            <LikeButton />
             <ShareButton sourceId={registryData.id} />
             <Menu closeOnSelect>
               <MenuButton

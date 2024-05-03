@@ -1,4 +1,3 @@
-import { SupabaseAuthClient } from '@supabase/supabase-js/dist/main/lib/SupabaseAuthClient';
 import { useActor, useSelector } from '@xstate/react';
 import { NextRouter } from 'next/router';
 import {
@@ -12,7 +11,7 @@ import {
   sendParent,
   spawn,
   State,
-  StateFrom,
+  StateFrom
 } from 'xstate';
 import { choose } from 'xstate/lib/actions';
 import { createModel } from 'xstate/lib/model';
@@ -29,7 +28,7 @@ import {
   callAPI,
   isErrorWithMessage,
   isSignedIn,
-  updateQueryParamsWithoutReload,
+  updateQueryParamsWithoutReload
 } from './utils';
 
 const initialMachineCode = `
@@ -150,7 +149,6 @@ function getInvocations(isEmbedded: boolean) {
 }
 
 export const makeSourceMachine = (params: {
-  auth: SupabaseAuthClient;
   sourceRegistryData: SourceRegistryData | null;
   router: NextRouter;
   isEmbedded: boolean;

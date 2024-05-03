@@ -7,7 +7,7 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs,
+  Tabs
 } from '@chakra-ui/react';
 import { useSelector } from '@xstate/react';
 import { useEffect, useState } from 'react';
@@ -15,7 +15,6 @@ import { ActorsPanel, selectServices } from './ActorsPanel';
 import { EditorPanel } from './EditorPanel';
 import { useEmbed } from './embedContext';
 import { EventsPanel } from './EventsPanel';
-import { Login } from './Login';
 import { ResizableBox } from './ResizableBox';
 import { SettingsPanel } from './SettingsPanel';
 import { useSimulation } from './SimulationContext';
@@ -74,7 +73,6 @@ export const PanelsView = (props: BoxProps) => {
               <SettingsIcon aria-label="Settings" />
             </Tab>
           )}
-          {!embed?.isEmbedded && <Login />}
           {embed?.isEmbedded && embed.showOriginalLink && embed.originalUrl && (
             <Button
               height="100%"

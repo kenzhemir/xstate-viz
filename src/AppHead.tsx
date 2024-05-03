@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Head from 'next/head';
+import * as React from 'react';
 import { featureFlags } from './featureFlags';
 
 export interface AppHeadProps {
@@ -35,7 +35,7 @@ export const AppHead = ({ importElk = true, ...props }: AppHeadProps) => {
       )}
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={`https://stately.ai/viz`} />
+      <meta property="og:url" content={`[EDITOR_LINK]`} />
       <meta property="og:title" content={props.ogTitle} />
       <meta property="og:description" content={props.description} />
       {props.ogImageUrl && featureFlags['Show OG Images'] && (
@@ -43,11 +43,6 @@ export const AppHead = ({ importElk = true, ...props }: AppHeadProps) => {
       )}
 
       <meta property="twitter:card" content="summary_large_image" />
-      <script
-        async
-        data-domain="stately.ai"
-        src="https://plausible.io/js/script.tagged-events.js"
-      />
     </Head>
   );
 };

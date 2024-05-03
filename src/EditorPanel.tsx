@@ -5,7 +5,7 @@ import {
   HStack,
   IconProps,
   Text,
-  Tooltip,
+  Tooltip
 } from '@chakra-ui/react';
 import type { Monaco } from '@monaco-editor/react';
 import { useActor, useMachine, useSelector } from '@xstate/react';
@@ -25,7 +25,7 @@ import {
   getEditorValue,
   getShouldImmediateUpdate,
   SourceMachineActorRef,
-  SourceMachineState,
+  SourceMachineState
 } from './sourceMachine';
 import type { AnyStateMachine } from './types';
 import { getPlatformMetaKeyLabel, uniq } from './utils';

@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRouter } from 'next/router';
 import {
   ActorRefFrom,
@@ -6,35 +5,21 @@ import {
   DoneInvokeEvent,
   send,
   spawn,
-  StateFrom,
+  StateFrom
 } from 'xstate';
 import { createModel } from 'xstate/lib/model';
 import { LoggedInUser } from './apiTypes';
-import { storage } from './localCache';
 import { notifMachine, notifModel } from './notificationMachine';
 import {
   makeSourceMachine,
   SourceMachineActorRef,
-  sourceModel,
+  sourceModel
 } from './sourceMachine';
 import { SourceRegistryData } from './types';
-import { callAPI, isSignedIn, once } from './utils';
-import { analytics } from './analytics';
-
-const trackApplicationLoad = once((_, event) => {
-  analytics()?.identify(event.data.id);
-  analytics()?.track('Opening XState Viz');
-});
+import { callAPI, isSignedIn } from './utils';
 
 const authModel = createModel(
   {
-    client: createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_API_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_API_KEY,
-      {
-        localStorage: storage,
-      },
-    ),
     notifRef: null! as ActorRefFrom<typeof notifMachine>,
     sourceRef: null as SourceMachineActorRef | null,
     loggedInUserData: null as LoggedInUser | null,
@@ -68,21 +53,6 @@ export const createAuthMachine = (params: {
     entry: assign({
       notifRef: () => spawn(notifMachine),
     }),
-    invoke: {
-      // this wouldn't be needed if only internal Supabase's `getSessionFromUrl` (happening after redirect) would be synchronous
-      src: (ctx) => (sendBack) => {
-        if (isSignedIn()) {
-          sendBack({ type: 'SIGNED_IN' });
-        }
-        ctx.client.auth.onAuthStateChange((event, session) => {
-          // we only care about SIGNED_IN because signing out is "synchronous" from our perspective anyway
-          // and is handled in response to user actions
-          if (event === 'SIGNED_IN') {
-            sendBack({ type: 'SIGNED_IN' });
-          }
-        });
-      },
-    },
     on: {
       SIGNED_IN: {
         target: 'signed_in',
@@ -96,7 +66,6 @@ export const createAuthMachine = (params: {
             return {
               sourceRef: spawn(
                 makeSourceMachine({
-                  auth: ctx.client.auth,
                   sourceRegistryData: params.sourceRegistryData,
                   router: params.router,
                   isEmbedded: params.isEmbbeded,
@@ -121,13 +90,6 @@ export const createAuthMachine = (params: {
       external_sign_in: {
         entry: [
           (_) => {
-            if (typeof window === 'undefined') return;
-            window.open(
-              `/registry/login?redirectTo=${encodeURIComponent(
-                window.location.pathname,
-              )}`,
-              '_self',
-            );
           },
         ],
       },
@@ -135,13 +97,7 @@ export const createAuthMachine = (params: {
         tags: ['authorized'],
         entry: [
           (_) => {
-            if (typeof window === 'undefined') return;
-            window.open(
-              `/registry/logout?redirectTo=${encodeURIComponent(
-                window.location.pathname,
-              )}`,
-              '_self',
-            );
+
           },
         ],
       },
@@ -190,7 +146,6 @@ export const createAuthMachine = (params: {
                       to: (ctx) => ctx.sourceRef!,
                     },
                   ),
-                  trackApplicationLoad,
                 ],
               },
               onError: {
@@ -205,7 +160,6 @@ export const createAuthMachine = (params: {
                       to: (ctx) => ctx.notifRef,
                     },
                   ),
-                  trackApplicationLoad,
                 ],
               },
             },
@@ -227,8 +181,4 @@ export const createAuthMachine = (params: {
       },
     },
   });
-};
-
-export const getSupabaseClient = (state: AuthMachineState) => {
-  return state.context.client;
 };

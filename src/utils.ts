@@ -415,7 +415,7 @@ export function makeEmbedUrl(id: string, baseUrl: string, params: ParsedEmbed) {
     {},
   );
   const query = new URLSearchParams(paramsWithNumberValues as any);
-  return `${baseUrl}/viz/embed/${id}?${query.toString()}`;
+  return `${baseUrl}/embed/${id}?${query.toString()}`;
 }
 
 export const isAcceptingSpaceNatively = (

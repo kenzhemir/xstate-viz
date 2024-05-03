@@ -15,23 +15,23 @@ module.exports = {
      */
     ignoreBuildErrors: true,
   },
-  basePath: `/viz`,
+  // basePath: `/viz`,
   productionBrowserSourceMaps: true,
   /**
    * These rewrites are never used in production - only in development
    */
-  async rewrites() {
-    return [
-      {
-        source: `/registry/:match*`,
-        basePath: false,
-        destination: `${registryPublicUrl}/:match*`,
-      },
-      {
-        source: `/`,
-        destination: `${landingPagePublicUrl}`,
-        basePath: false,
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: `/registry/:match*`,
+  //       basePath: false,
+  //       destination: `${registryPublicUrl}/:match*`,
+  //     },
+  //     {
+  //       source: `/`,
+  //       destination: `${landingPagePublicUrl}`,
+  //       basePath: false,
+  //     },
+  //   ];
+  // },
 };

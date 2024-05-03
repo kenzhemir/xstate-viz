@@ -351,7 +351,7 @@ export async function getElkGraph(
       'elk.layered.considerModelOrder': 'NODES_AND_EDGES',
       'elk.layered.wrapping.strategy': 'MULTI_EDGE',
       'elk.aspectRatio': '2',
-      'elk.direction': 'RIGHT',
+      'elk.direction': 'DOWN',
     },
   });
 

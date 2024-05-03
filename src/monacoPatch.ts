@@ -1,11 +1,11 @@
 // This file exists to configure and patch the Monaco editor
 import monacoLoader from '@monaco-editor/loader';
 import type { languages } from 'monaco-editor';
-
 // should be in sync with the "modules" allowed by our eval Function
 import * as XState from 'xstate';
-import * as XStateModel from 'xstate/lib/model';
 import * as XStateActions from 'xstate/lib/actions';
+import * as XStateModel from 'xstate/lib/model';
+
 
 // dont hate the player, hate the game
 // https://github.com/microsoft/vscode-loader/issues/33
@@ -41,7 +41,7 @@ const MONACO_LOCATION =
     ? // this makes debugging in development easier
       // (with non-minified version of the Monaco)
       // and ensures Cypress caches the result on disk
-      `/viz/monaco-editor/dev/vs`
+      `/monaco-editor/dev/vs`
     : // use the version that @monaco-editor/loader defaults to
       `https://unpkg.com/monaco-editor@0.25.2/min/vs`;
 

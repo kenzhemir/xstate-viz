@@ -14,7 +14,7 @@ module.exports = {
      */
     ignoreBuildErrors: true,
   },
-  // basePath: `/viz`,
+  basePath: `/xstate-viz`,
   exportPathMap: async function () {
     console.log(arguments);
     return {

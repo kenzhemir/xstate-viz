@@ -27,3 +27,4 @@ public/monaco-editor
 cypress/videos
 cypress/screenshots
 .next
+out
